@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Clock</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		
+		.bg {
+			background-image: linear-gradient(to bottom, #567877 70%, #73918F 10%, #7F9C9A);
+			height: 100vh;
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: center center;
+			background-attachment: fixed;
+		}
+		.container {
+			width: 100vw;
+			height: 100vh;
+		}
+		.outer_cover {
+			position: absolute;
+			left: 10%;
+			top: 10%;
+			width: 80%;
+			height: 80%;
+			background-color: #27312D;
+			border-radius: 60px;
+			display: flex;
+		}
+		.hour_block {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			position: relative;
+			left: 2%;
+			top: 10%;
+			width: 31%;
+			border-radius: 60px;
+			height: 65vh;
+			background-color: #393937;
+		}
+		.minute_block {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			position: relative;
+			/*left: -1%;*/
+			top: 10%;
+			border-radius: 60px;
+			width: 31%;
+			height: 65vh;
+			background-color: #393937;
+		}
+		.second_block {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			position: relative;
+			left: -2%;
+			top: 10%;
+			border-radius: 60px;
+			width: 31%;
+			height: 65vh;
+			background-color: #393937;
+		}
+		#hour_block, #minute_block, #second_block {
+			color: red;
+			font-size: 10vw;
+		}
+		.colon1 {
+			display: flex;
+			position: relative; 
+			justify-content: center;
+			align-items: center;
+			height: 65vh;
+			top: 9%; 
+			left: 1%; 
+			font-size: 10vw; 
+			color: white;
+		}
+		.colon2 {
+			display: flex;
+			position: relative; 
+			justify-content: center;
+			align-items: center;
+			height: 65vh;
+			left: -1%;
+			top: 9%; 
+			color: white;
+			font-size: 10vw; 
+		}
+		/* Extra small devices (phones, 600px and down) */
+		@media only screen and (max-width: 600px) {
+			.outer_cover {
+			top: 30%;
+			left: 3.5%	;
+			width: 330px;
+			height: 330px;
+			}
+			.hour_block {
+				top: 25%;
+				margin-left: 1%;
+				width: 150px;
+				height: 150px;
+			}
+			.minute_block {
+				top: 25%;
+				margin-left: 1%;
+				width: 150px;
+				height: 150px;
+			}
+			.second_block {
+				top: 25%;
+				margin-left: 1%;
+				width: 150px;
+				height: 150px;
+			}
+			.colon1 {
+				top: 13%;
+				height: 30vh;
+			}
+			.colon2 {
+				top: 13%;
+				height: 30vh;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="bg">
+	<div class="container">
+		<div class="outer_cover">
+			<div class="hour_block"><span id="hour_block"></span></div>
+			<div class="colon1">:</div>
+			<div class="minute_block"><span id="minute_block"></span></div>
+			<div class="colon2">:</div>
+			<div class="second_block"><span id="second_block"></span></div>
+		</div>
+	</div>
+	</div>
+	<script>
+		function clock() {
+			let date = new Date();
+			let hours = date.getHours();
+			let minutes = date.getMinutes();
+			let seconds = date.getSeconds();
+			if(hours > 12) 
+				hours = hours - 12;
+			if(minutes < 10)
+				minutes = "0" + minutes;
+			if(seconds < 10)
+				seconds = "0" + seconds;
+			document.getElementById('hour_block').innerHTML = hours;
+			document.getElementById('minute_block').innerHTML = minutes;
+			document.getElementById('second_block').innerHTML = seconds;
+			setTimeout(clock, 1000);
+		}
+		clock();
+	</script>
+</body>
+</html>
